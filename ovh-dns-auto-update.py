@@ -42,9 +42,9 @@ def check_ip(domaine_name):
     resolver.nameservers = ['8.8.8.8']
     answer = resolver.query(domaine_name)
     wanted_ip = answer[0]
-    if current_ip != wanted_ip:
-        return False
-    return True
+    if str(current_ip) == str(wanted_ip):
+        return True
+    return False
 
 def update_ip(a_field, ip, client):
     """ Update IP for the A field
