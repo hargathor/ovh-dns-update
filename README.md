@@ -34,6 +34,7 @@ $ pip install -r requirements.txt
 $ sudo cp ovh-dns-auto-update.py /usr/local/bin
 $ ovh-dns-auto-update.py
 ````
+## Cron
 
 Created to be launched as a cron command. Here is an example for an hourly launch
 ```bash
