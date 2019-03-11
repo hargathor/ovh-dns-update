@@ -30,11 +30,18 @@ $ docker run -it --rm --name ovh-dns-update -v /var/log/ovh.log:/var/log/ovh.log
 
 To launch it as a command line just install the dependencies using pip and launch it
 ```bash
-$ pip install -r requirements.txt 
-$ ./ovh-dns-auto-update.py
+$ pip install -r requirements.txt
+$ sudo cp ovh-dns-auto-update.py /usr/local/bin
+$ ovh-dns-auto-update.py
 ````
 
 Created to be launched as a cron command. Here is an example for an hourly launch
+```bash
+# m h  dom mon dow   command
+@hourly /usr/local/bin/ovh-dns-auto-update.py
+````
+
+or if you want to use docker
 ```bash
 # m h  dom mon dow   command
 @hourly /usr/bin/docker run --rm --name ovh-dns-update -v /var/log/ovh.log:/var/log/ovh.log -v /opt/ovh-dns-update:/opt/app -w /opt/app python:3 bash -c 'pip install -r requirements.txt; python ovh-dns-auto-update.py'
