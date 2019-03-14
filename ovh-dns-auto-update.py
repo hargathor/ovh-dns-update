@@ -61,6 +61,16 @@ def update_ip(a_field, ip, client):
             subDomain=a_field['subDomain'],
             target=ip)
 
+def refresh_domain(domaine, client):
+    """TODO: Docstring for refresh_domain.
+
+    :domaine: TODO
+    :returns: TODO
+
+    """
+    result = client.post('/domain/zone/{}/refresh'.format(domaine))
+
+
 def main():
     """TODO: Docstring for main.
     :returns: TODO
@@ -76,6 +86,7 @@ def main():
         for field in result:
             domain_def = client.get('/domain/zone/domaineferrari.com/record/{}'.format(field))
             update_ip(domain_def, ip, client)
+        refresh_domain('domaineferrari.com', client)
 
 
 if __name__ == '__main__':
